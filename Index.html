@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arte Eloam Maron</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(120deg, #1e1e2f, #2c2c54);
+    color: white;
+}
+
+header {
+    text-align: center;
+    padding: 40px 20px;
+    font-size: 2.5em;
+    font-weight: 700;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.tabs {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.tab {
+    flex: 1;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab:hover {
+    transform: scale(1.05);
+    filter: brightness(1.2);
+}
+
+.presentacion { background: #ff6b6b; }
+.musica { background: #54a0ff; }
+.libros { background: #1dd1a1; }
+.contacto { background: #f368e0; }
+
+.content {
+    display: none;
+    padding: 30px;
+    animation: fadeIn 0.6s ease;
+}
+
+.active {
+    display: block;
+}
+
+.subtabs {
+    margin-top: 20px;
+}
+
+.subtab {
+    display: inline-block;
+    margin: 8px;
+    padding: 10px 15px;
+    border-radius: 20px;
+    background: rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.subtab:hover {
+    background: rgba(255,255,255,0.4);
+    transform: translateY(-3px);
+}
+
+.subcontent {
+    display: none;
+    margin-top: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    animation: slideUp 0.5s ease;
+}
+
+.subactive {
+    display: block;
+}
+
+video {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    opacity: 0.7;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+Arte Eloam Maron
+</header>
+
+<div class="tabs">
+    <div class="tab presentacion" onclick="showSection('presentacion')">Presentación</div>
+    <div class="tab musica" onclick="showSection('musica')">Música</div>
+    <div class="tab libros" onclick="showSection('libros')">Libros</div>
+    <div class="tab contacto" onclick="showSection('contacto')">Contacto</div>
+</div>
+
+<div id="presentacion" class="content active">
+    <h2>Presentación</h2>
+    <div class="subtabs">
+        <div class="subtab" onclick="showSub('p1')">¿Cómo es la música?</div>
+        <div class="subtab" onclick="showSub('p2')">¿A qué libros se accede?</div>
+    </div>
+    <div id="p1" class="subcontent">
+        <p>Música emocional, libre y experimental, nacida de la improvisación.</p>
+    </div>
+    <div id="p2" class="subcontent">
+        <p>Libros creativos, reflexivos y artísticos que invitan a explorar nuevas ideas.</p>
+    </div>
+</div>
+
+<div id="musica" class="content">
+    <h2>Música</h2>
+    <div class="subtabs">
+        <div class="subtab" onclick="showSub('m1')">Improvisaciones</div>
+        <div class="subtab" onclick="showSub('m2')">Versiones</div>
+        <div class="subtab" onclick="showSub('m3')">Arpa</div>
+        <div class="subtab" onclick="checkPassword()">Música premium</div>
+    </div>
+
+    <div id="m1" class="subcontent">
+        <p>Improvisaciones espontáneas llenas de emoción.</p>
+        <video controls src="Impro_prima.mp4"></video>
+        <video controls src="Impro_bell.mp4"></video>
+    </div>
+
+    <div id="m2" class="subcontent">
+        <p>Interpretaciones personales de obras conocidas.</p>
+        <video controls src="chasing_clouds.mp4"></video>
+        <video controls src="love_is_all_around.mp4"></video>
+    </div>
+
+    <div id="m3" class="subcontent">
+        <p>Piezas musicales centradas en el arpa.</p>
+    </div>
+
+    <div id="premium" class="subcontent">
+        <h3>Contenido Premium</h3>
+        <p>Acceso concedido. Bienvenido al contenido exclusivo.</p>
+    </div>
+</div>
+
+<div id="libros" class="content">
+    <h2>Libros</h2>
+    <p>Explora obras literarias llenas de creatividad.</p>
+</div>
+
+<div id="contacto" class="content">
+    <h2>Contacto</h2>
+    <p>Email: contacto@eloamaron.com</p>
+</div>
+
+<footer>
+© 2026 Arte Eloam Maron
+</footer>
+
+<script>
+function showSection(id) {
+    document.querySelectorAll('.content').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+}
+
+function showSub(id) {
+    document.querySelectorAll('.subcontent').forEach(sub => sub.classList.remove('subactive'));
+    document.getElementById(id).classList.add('subactive');
+}
+
+function checkPassword() {
+    let pass = prompt("Introduce la contraseña para acceder a Música Premium:\n\nSi no la tienes, solicítala en: javierruizmadrona@gmail.com");
+    if(pass === "musicaPremium2026") {
+        showSub('premium');
+    } else if(pass !== null) {
+        alert("Contraseña incorrecta");
+    }
+}
+</script>
+
+</body>
+</html>
